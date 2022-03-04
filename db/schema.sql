@@ -20,4 +20,12 @@ CREATE TABLE roles (
   ON DELETE SET NULL
 );
 
---table for departments--
+--table for employees--
+CREATE TABLE employees (
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  manager_id INT,
+  role_id INT,
+  FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE SET NULL,
+  FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
+);
