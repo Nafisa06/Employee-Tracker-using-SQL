@@ -10,51 +10,20 @@ const db = mysql.createConnection(
     {
       host: 'localhost',
       // MySQL username,
-      user: 'root',
+      user: 'process.env.DB_USER',
       // MySQL password
-      password: '',
+      password: 'process.env.DB_PASSWORD',
       database: 'company_db'
     },
     console.log(`Connected to the company_db database.`)
   );
   
-  // Query database
-  db.query('SELECT * FROM students', function (err, results) {
-    console.log(results);
-  });
-  
-  // Default response for any other request (Not Found)
-  app.use((req, res) => {
-    res.status(404).end();
-  });
-  
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-  
-  // Query database
-let deletedRow = 2;
+connection.query = util.promisify(connection.query);
 
-db.query(`DELETE FROM favorite_books WHERE id = ?`, deletedRow, (err, result) => {
-  if (err) {
-    console.log(err);
-  }
-  console.log(result);
-});
-
-// Query database
-db.query('SELECT * FROM favorite_books', function (err, results) {
-  console.log(results);
-});
-
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+connection.connect(function (err) {
+    if (err) throw err;
+    initialAction();
+})
 
 inquirer
   .prompt([
