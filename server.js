@@ -25,6 +25,13 @@ connection.connect(function (err) {
     initialAction();
 })
 
+// employee tracker logo
+
+console.table(
+    "\n------------ EMPLOYEE TRACKER ------------\n"
+)
+
+
 inquirer
   .prompt([
     {
