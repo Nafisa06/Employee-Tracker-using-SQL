@@ -31,63 +31,24 @@ console.table(
     "\n------------ EMPLOYEE TRACKER ------------\n"
 )
 
+// inital questions
 
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      message: 'What is your user name?',
-      name: 'username',
-    },
-    {
-      type: 'password',
-      message: 'What is your password?',
-      name: 'password',
-    },
-    {
-      type: 'password',
-      message: 'Re-enter password to confirm:',
-      name: 'confirm',
-    },
-  ])
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log('Success!')
-      : console.log('You forgot your password already?!')
-  );
+const initialAction = async () => {
+    try {
+        let answer = await inquirer.prompt({
+            name: 'action',
+            type: 'list',
+            message: 'What would you like to do?',
+            choices: [
+                'View All Employees',
+                'Add Employees',
+                'Update Employee Role',
+                'View All Roles',
+                'Add Roles',
+                'View All Departments',                              
+                'Add Departments',
+                'Add Roles',               
+                'Quit'
+            ]
+        });
 
-  const promptUser = () => {
-    return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'name',
-        message: 'What is your name?',
-      },
-      {
-        type: 'input',
-        name: 'location',
-        message: 'Where are you from?',
-      },
-      {
-        type: 'input',
-        name: 'hobby',
-        message: 'What is your favorite hobby?',
-      },
-      {
-        type: 'input',
-        name: 'food',
-        message: 'What is your favorite food?',
-      },
-      {
-        type: 'input',
-        name: 'github',
-        message: 'Enter your GitHub Username',
-      },
-      {
-        type: 'input',
-        name: 'linkedin',
-        message: 'Enter your LinkedIn URL.',
-      },
-    ]);
-  };
-  
