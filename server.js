@@ -90,5 +90,12 @@ const initialAction = async () => {
     };
 }
 
+// Select view all employees.
+// Select to view departments.
+// Select to view all roles.
+// Select to add employees.
+// Select to add a department.
+// Select to add new roles.
+// Select to update the role of a specific employee.
 
 
