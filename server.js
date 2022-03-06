@@ -91,7 +91,40 @@ const initialAction = async () => {
 }
 
 // Select view all employees.
+const employeeView = async () => {
+    console.log('Employee View');
+    try {
+        let query = 'SELECT * FROM employee';
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+            let employeeArray = [];
+            res.forEach(employee => employeeArray.push(employee));
+            console.table(employeeArray);
+            initialAction();
+        });
+    } catch (err) {
+        console.log(err);
+        initialAction();
+    };
+}
 // Select to view departments.
+const departmentView = async () => {
+    console.log('Department View');
+    try {
+        let query = 'SELECT * FROM department';
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+            let departmentArray = [];
+            res.forEach(department => departmentArray.push(department));
+            console.table(departmentArray);
+            initialAction();
+        });
+    } catch (err) {
+        console.log(err);
+        initialAction();
+    };
+}
+
 // Select to view all roles.
 // Select to add employees.
 // Select to add a department.
